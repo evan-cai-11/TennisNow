@@ -1,0 +1,673 @@
+[
+  {
+    "osm_type": "way",
+    "osm_id": 24221554,
+    "name": "Public Tennis Courts",
+    "lat": 37.5807653,
+    "lon": -122.3446469,
+    "is_public_guess": true,
+    "surface": null,
+    "lights": null,
+    "indoor": false,
+    "num_courts": null,
+    "address": {
+      "city": null,
+      "county": null,
+      "state": null,
+      "postcode": null
+    },
+    "tags": {
+      "leisure": "pitch",
+      "sport": "tennis"
+    }
+  },
+  {
+    "osm_type": "way",
+    "osm_id": 24221556,
+    "name": "Public Tennis Courts",
+    "lat": 37.5828136,
+    "lon": -122.3450581,
+    "is_public_guess": true,
+    "surface": null,
+    "lights": null,
+    "indoor": false,
+    "num_courts": null,
+    "address": {
+      "city": null,
+      "county": null,
+      "state": null,
+      "postcode": null
+    },
+    "tags": {
+      "leisure": "pitch",
+      "sport": "tennis"
+    }
+  },
+  {
+    "osm_type": "way",
+    "osm_id": 24281780,
+    "name": "Public Tennis Courts",
+    "lat": 37.5839473,
+    "lon": -122.3478659,
+    "is_public_guess": true,
+    "surface": null,
+    "lights": null,
+    "indoor": false,
+    "num_courts": null,
+    "address": {
+      "city": null,
+      "county": null,
+      "state": null,
+      "postcode": null
+    },
+    "tags": {
+      "leisure": "pitch",
+      "sport": "tennis"
+    }
+  },
+  {
+    "osm_type": "way",
+    "osm_id": 384473012,
+    "name": "Public Tennis Courts",
+    "lat": 37.5881161,
+    "lon": -122.3774458,
+    "is_public_guess": true,
+    "surface": null,
+    "lights": null,
+    "indoor": false,
+    "num_courts": 2,
+    "address": {
+      "city": null,
+      "county": null,
+      "state": null,
+      "postcode": null
+    },
+    "tags": {
+      "capacity": "2",
+      "leisure": "pitch",
+      "sport": "tennis"
+    }
+  },
+  {
+    "osm_type": "way",
+    "osm_id": 543059974,
+    "name": "Public Tennis Courts",
+    "lat": 37.583853,
+    "lon": -122.3479661,
+    "is_public_guess": true,
+    "surface": null,
+    "lights": null,
+    "indoor": false,
+    "num_courts": null,
+    "address": {
+      "city": null,
+      "county": null,
+      "state": null,
+      "postcode": null
+    },
+    "tags": {
+      "leisure": "pitch",
+      "sport": "tennis"
+    }
+  },
+  {
+    "osm_type": "way",
+    "osm_id": 543059975,
+    "name": "Public Tennis Courts",
+    "lat": 37.5837589,
+    "lon": -122.348066,
+    "is_public_guess": true,
+    "surface": null,
+    "lights": null,
+    "indoor": false,
+    "num_courts": null,
+    "address": {
+      "city": null,
+      "county": null,
+      "state": null,
+      "postcode": null
+    },
+    "tags": {
+      "leisure": "pitch",
+      "sport": "tennis"
+    }
+  },
+  {
+    "osm_type": "way",
+    "osm_id": 543059976,
+    "name": "Public Tennis Courts",
+    "lat": 37.5836642,
+    "lon": -122.3481666,
+    "is_public_guess": true,
+    "surface": null,
+    "lights": null,
+    "indoor": false,
+    "num_courts": null,
+    "address": {
+      "city": null,
+      "county": null,
+      "state": null,
+      "postcode": null
+    },
+    "tags": {
+      "leisure": "pitch",
+      "sport": "tennis"
+    }
+  },
+  {
+    "osm_type": "way",
+    "osm_id": 543059977,
+    "name": "Public Tennis Courts",
+    "lat": 37.5845803,
+    "lon": -122.3473456,
+    "is_public_guess": true,
+    "surface": null,
+    "lights": null,
+    "indoor": false,
+    "num_courts": null,
+    "address": {
+      "city": null,
+      "county": null,
+      "state": null,
+      "postcode": null
+    },
+    "tags": {
+      "leisure": "pitch",
+      "sport": "tennis"
+    }
+  },
+  {
+    "osm_type": "way",
+    "osm_id": 543059978,
+    "name": "Public Tennis Courts",
+    "lat": 37.5844995,
+    "lon": -122.3474631,
+    "is_public_guess": true,
+    "surface": null,
+    "lights": null,
+    "indoor": false,
+    "num_courts": null,
+    "address": {
+      "city": null,
+      "county": null,
+      "state": null,
+      "postcode": null
+    },
+    "tags": {
+      "leisure": "pitch",
+      "sport": "tennis"
+    }
+  },
+  {
+    "osm_type": "way",
+    "osm_id": 543059979,
+    "name": "Public Tennis Courts",
+    "lat": 37.5844189,
+    "lon": -122.3475803,
+    "is_public_guess": true,
+    "surface": null,
+    "lights": null,
+    "indoor": false,
+    "num_courts": null,
+    "address": {
+      "city": null,
+      "county": null,
+      "state": null,
+      "postcode": null
+    },
+    "tags": {
+      "leisure": "pitch",
+      "sport": "tennis"
+    }
+  },
+  {
+    "osm_type": "way",
+    "osm_id": 543059980,
+    "name": "Public Tennis Courts",
+    "lat": 37.5843378,
+    "lon": -122.3476981,
+    "is_public_guess": true,
+    "surface": null,
+    "lights": null,
+    "indoor": false,
+    "num_courts": null,
+    "address": {
+      "city": null,
+      "county": null,
+      "state": null,
+      "postcode": null
+    },
+    "tags": {
+      "leisure": "pitch",
+      "sport": "tennis"
+    }
+  },
+  {
+    "osm_type": "way",
+    "osm_id": 730906534,
+    "name": "Public Tennis Courts",
+    "lat": 37.5855835,
+    "lon": -122.3770669,
+    "is_public_guess": true,
+    "surface": null,
+    "lights": null,
+    "indoor": false,
+    "num_courts": null,
+    "address": {
+      "city": null,
+      "county": null,
+      "state": null,
+      "postcode": null
+    },
+    "tags": {
+      "leisure": "pitch",
+      "sport": "tennis"
+    }
+  },
+  {
+    "osm_type": "way",
+    "osm_id": 849066275,
+    "name": "Bay Club Broadway Tennis",
+    "lat": 37.5927581,
+    "lon": -122.3666346,
+    "is_public_guess": true,
+    "surface": null,
+    "lights": null,
+    "indoor": false,
+    "num_courts": null,
+    "address": {
+      "city": "Burlingame",
+      "county": null,
+      "state": null,
+      "postcode": "94010"
+    },
+    "tags": {
+      "addr:city": "Burlingame",
+      "addr:housenumber": "60",
+      "addr:postcode": "94010",
+      "addr:street": "Edwards Court",
+      "building": "yes",
+      "fee": "yes",
+      "leisure": "sports_centre",
+      "name": "Bay Club Broadway Tennis",
+      "opening_hours": "Mo-Su 07:00-20:00",
+      "sport": "tennis",
+      "website": "https://www.bayclubs.com/broadwaytennis/"
+    }
+  },
+  {
+    "osm_type": "way",
+    "osm_id": 1087281161,
+    "name": "Public Tennis Courts",
+    "lat": 37.5828949,
+    "lon": -122.3449429,
+    "is_public_guess": true,
+    "surface": null,
+    "lights": null,
+    "indoor": false,
+    "num_courts": null,
+    "address": {
+      "city": null,
+      "county": null,
+      "state": null,
+      "postcode": null
+    },
+    "tags": {
+      "leisure": "pitch",
+      "sport": "tennis"
+    }
+  },
+  {
+    "osm_type": "way",
+    "osm_id": 1087281162,
+    "name": "Public Tennis Courts",
+    "lat": 37.5829819,
+    "lon": -122.344816,
+    "is_public_guess": true,
+    "surface": null,
+    "lights": null,
+    "indoor": false,
+    "num_courts": null,
+    "address": {
+      "city": null,
+      "county": null,
+      "state": null,
+      "postcode": null
+    },
+    "tags": {
+      "leisure": "pitch",
+      "sport": "tennis"
+    }
+  },
+  {
+    "osm_type": "way",
+    "osm_id": 1087281163,
+    "name": "Public Tennis Courts",
+    "lat": 37.5830723,
+    "lon": -122.3446905,
+    "is_public_guess": true,
+    "surface": null,
+    "lights": null,
+    "indoor": false,
+    "num_courts": null,
+    "address": {
+      "city": null,
+      "county": null,
+      "state": null,
+      "postcode": null
+    },
+    "tags": {
+      "leisure": "pitch",
+      "sport": "tennis"
+    }
+  },
+  {
+    "osm_type": "way",
+    "osm_id": 1087281164,
+    "name": "Public Tennis Courts",
+    "lat": 37.5833454,
+    "lon": -122.3452949,
+    "is_public_guess": true,
+    "surface": null,
+    "lights": null,
+    "indoor": false,
+    "num_courts": null,
+    "address": {
+      "city": null,
+      "county": null,
+      "state": null,
+      "postcode": null
+    },
+    "tags": {
+      "leisure": "pitch",
+      "sport": "tennis"
+    }
+  },
+  {
+    "osm_type": "way",
+    "osm_id": 1087281165,
+    "name": "Public Tennis Courts",
+    "lat": 37.5833863,
+    "lon": -122.3451327,
+    "is_public_guess": true,
+    "surface": null,
+    "lights": null,
+    "indoor": false,
+    "num_courts": null,
+    "address": {
+      "city": null,
+      "county": null,
+      "state": null,
+      "postcode": null
+    },
+    "tags": {
+      "leisure": "pitch",
+      "sport": "tennis"
+    }
+  },
+  {
+    "osm_type": "way",
+    "osm_id": 1087281166,
+    "name": "Public Tennis Courts",
+    "lat": 37.5834272,
+    "lon": -122.3449725,
+    "is_public_guess": true,
+    "surface": null,
+    "lights": null,
+    "indoor": false,
+    "num_courts": null,
+    "address": {
+      "city": null,
+      "county": null,
+      "state": null,
+      "postcode": null
+    },
+    "tags": {
+      "leisure": "pitch",
+      "sport": "tennis"
+    }
+  },
+  {
+    "osm_type": "way",
+    "osm_id": 1087284365,
+    "name": "Public Tennis Courts",
+    "lat": 37.5808515,
+    "lon": -122.3445235,
+    "is_public_guess": true,
+    "surface": null,
+    "lights": null,
+    "indoor": false,
+    "num_courts": null,
+    "address": {
+      "city": null,
+      "county": null,
+      "state": null,
+      "postcode": null
+    },
+    "tags": {
+      "leisure": "pitch",
+      "sport": "tennis"
+    }
+  },
+  {
+    "osm_type": "way",
+    "osm_id": 1087284366,
+    "name": "Public Tennis Courts",
+    "lat": 37.5809395,
+    "lon": -122.344395,
+    "is_public_guess": true,
+    "surface": null,
+    "lights": null,
+    "indoor": false,
+    "num_courts": null,
+    "address": {
+      "city": null,
+      "county": null,
+      "state": null,
+      "postcode": null
+    },
+    "tags": {
+      "leisure": "pitch",
+      "sport": "tennis"
+    }
+  },
+  {
+    "osm_type": "way",
+    "osm_id": 1087284367,
+    "name": "Public Tennis Courts",
+    "lat": 37.5810485,
+    "lon": -122.3442399,
+    "is_public_guess": true,
+    "surface": null,
+    "lights": null,
+    "indoor": false,
+    "num_courts": null,
+    "address": {
+      "city": null,
+      "county": null,
+      "state": null,
+      "postcode": null
+    },
+    "tags": {
+      "leisure": "pitch",
+      "sport": "tennis"
+    }
+  },
+  {
+    "osm_type": "way",
+    "osm_id": 1091980995,
+    "name": "Public Tennis Courts",
+    "lat": 37.5880049,
+    "lon": -122.3775436,
+    "is_public_guess": true,
+    "surface": null,
+    "lights": null,
+    "indoor": false,
+    "num_courts": 2,
+    "address": {
+      "city": null,
+      "county": null,
+      "state": null,
+      "postcode": null
+    },
+    "tags": {
+      "capacity": "2",
+      "leisure": "pitch",
+      "sport": "tennis"
+    }
+  },
+  {
+    "osm_type": "way",
+    "osm_id": 1099477849,
+    "name": "Public Tennis Courts",
+    "lat": 37.5744349,
+    "lon": -122.3521769,
+    "is_public_guess": true,
+    "surface": null,
+    "lights": null,
+    "indoor": false,
+    "num_courts": null,
+    "address": {
+      "city": null,
+      "county": null,
+      "state": null,
+      "postcode": null
+    },
+    "tags": {
+      "leisure": "pitch",
+      "sport": "tennis"
+    }
+  },
+  {
+    "osm_type": "way",
+    "osm_id": 1423308609,
+    "name": "Public Tennis Courts",
+    "lat": 37.5973213,
+    "lon": -122.3767021,
+    "is_public_guess": true,
+    "surface": null,
+    "lights": null,
+    "indoor": false,
+    "num_courts": null,
+    "address": {
+      "city": null,
+      "county": null,
+      "state": null,
+      "postcode": null
+    },
+    "tags": {
+      "leisure": "pitch",
+      "sport": "tennis"
+    }
+  },
+  {
+    "osm_type": "way",
+    "osm_id": 1423308610,
+    "name": "Public Tennis Courts",
+    "lat": 37.5971438,
+    "lon": -122.3763534,
+    "is_public_guess": true,
+    "surface": null,
+    "lights": null,
+    "indoor": false,
+    "num_courts": null,
+    "address": {
+      "city": null,
+      "county": null,
+      "state": null,
+      "postcode": null
+    },
+    "tags": {
+      "leisure": "pitch",
+      "sport": "tennis"
+    }
+  },
+  {
+    "osm_type": "way",
+    "osm_id": 1423308611,
+    "name": "Public Tennis Courts",
+    "lat": 37.5972544,
+    "lon": -122.3762636,
+    "is_public_guess": true,
+    "surface": null,
+    "lights": null,
+    "indoor": false,
+    "num_courts": null,
+    "address": {
+      "city": null,
+      "county": null,
+      "state": null,
+      "postcode": null
+    },
+    "tags": {
+      "leisure": "pitch",
+      "sport": "tennis"
+    }
+  },
+  {
+    "osm_type": "way",
+    "osm_id": 1423308612,
+    "name": "Public Tennis Courts",
+    "lat": 37.5974329,
+    "lon": -122.3766136,
+    "is_public_guess": true,
+    "surface": null,
+    "lights": null,
+    "indoor": false,
+    "num_courts": null,
+    "address": {
+      "city": null,
+      "county": null,
+      "state": null,
+      "postcode": null
+    },
+    "tags": {
+      "leisure": "pitch",
+      "sport": "tennis"
+    }
+  },
+  {
+    "osm_type": "way",
+    "osm_id": 1423308842,
+    "name": "Public Tennis Courts",
+    "lat": 37.5895271,
+    "lon": -122.3698189,
+    "is_public_guess": true,
+    "surface": null,
+    "lights": null,
+    "indoor": false,
+    "num_courts": null,
+    "address": {
+      "city": null,
+      "county": null,
+      "state": null,
+      "postcode": null
+    },
+    "tags": {
+      "leisure": "pitch",
+      "sport": "tennis"
+    }
+  },
+  {
+    "osm_type": "way",
+    "osm_id": 1423308843,
+    "name": "Public Tennis Courts",
+    "lat": 37.5896269,
+    "lon": -122.3697294,
+    "is_public_guess": true,
+    "surface": null,
+    "lights": null,
+    "indoor": false,
+    "num_courts": null,
+    "address": {
+      "city": null,
+      "county": null,
+      "state": null,
+      "postcode": null
+    },
+    "tags": {
+      "leisure": "pitch",
+      "sport": "tennis"
+    }
+  }
+]
