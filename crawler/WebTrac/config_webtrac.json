@@ -1,0 +1,34 @@
+{
+  "WebTrac": {
+    "Burlingame": {
+      "base_url": "https://caburlingameweb.myvscloud.com",
+      "params": {
+        "display": "Listing",
+        "blockstodisplay": 50,
+        "frclass": "Tennis Court",
+        "type": "",
+        "keywordoption": "Match One"
+      }
+    },
+    "San Mateo": {
+      "base_url": "https://casanmateoweb.myvscloud.com",
+      "params": {
+        "display": "Detail",
+        "blockstodisplay": 50,
+        "type": "Tennis Court",
+        "frclass": "",
+        "keywordoption": "Match One"
+      }
+    },
+    "Albany": {
+      "base_url": "https://caalbanyweb.myvscloud.com",
+      "params": {
+        "display": "Listing",
+        "blockstodisplay": 50,
+        "frclass": "TENNI",
+        "type": "",
+        "keywordoption": "Match One"
+      }
+    }
+  }
+}
