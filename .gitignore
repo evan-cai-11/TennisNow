@@ -6,3 +6,4 @@ crawler/WebTrac/webtrac_debug
 crawler/gCalendar/credentials.json
 crawler/gCalendar/token.json
 crawler/gCalendar/credential.json
+crawler/schedule_pages
