@@ -394,7 +394,7 @@ def fetch_schedule(date_ymd: str, use_browser: bool = False, headful: bool = Fal
     base_url = cfg.get("base_url", BASE).rstrip("/")
 
     # Drive the UI to produce the listing and parse directly from browser HTML
-    html, cookies = playwright_fetch_listing_html(
+    html, _ = playwright_fetch_listing_html(
         date_ymd,
         headless=not headful,
         verbose=debug_browser,
@@ -402,14 +402,7 @@ def fetch_schedule(date_ymd: str, use_browser: bool = False, headful: bool = Fal
         vendor="WebTrac",
         site=site,
     )
-    # Transfer cookies to requests session for iteminfo fetches
-    for c in cookies:
-        sess.cookies.set(
-            name=c.get("name"),
-            value=c.get("value"),
-            domain=c.get("domain").lstrip("."),
-            path=c.get("path", "/"),
-        )
+
     # Prefer table-based parser if present, fallback to group parser
     items = parse_listing_table_schedules(html)
     if not items:
@@ -418,6 +411,8 @@ def fetch_schedule(date_ymd: str, use_browser: bool = False, headful: bool = Fal
         it.update({
             "date": date_ymd,
             "source": f"{base_url.split('//')[1].split('.')[0]}_webtrac",
+            "city": site,
+            "updated_at": datetime.now().isoformat(),
         })
     return items
 

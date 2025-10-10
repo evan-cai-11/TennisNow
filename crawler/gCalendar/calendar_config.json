@@ -1,0 +1,31 @@
+{
+  "google_calendar": {
+    "default_calendar_id": "playfctc@gmail.com",
+    "calendar_name": "Foster City Tennis Courts",
+    "calendar_description": "Foster City Tennis Court availability from WebTrac",
+    "timezone": "America/Los_Angeles",
+    "reminder_minutes": [30, 60],
+    "event_color": "2",
+    "transparency": "transparent"
+  },
+  "cities": {
+    "foster_city": {
+      "enabled": true,
+      "query_mode": "foster_city",
+      "display_name": "Foster City Tennis Courts"
+    }
+  },
+  "schedule": {
+    "fetch_days_ahead": 7,
+    "update_frequency_hours": 6,
+    "use_browser": false,
+    "headful": false,
+    "debug_browser": false
+  },
+  "event_settings": {
+    "include_unavailable": false,
+    "event_title_template": "Foster City Tennis: {court_name}",
+    "event_description_template": "Court: {court_name}\nLocation: {location}\nStatus: {status}\nSource: Foster City WebTrac",
+    "max_events_per_day": 50
+  }
+}

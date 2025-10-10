@@ -1,1 +1,8 @@
 .DS_Store
+crawler/tmp
+crawler/WebTrac/webtrac_debug
+
+# Google Calendar API credentials and tokens
+crawler/gCalendar/credentials.json
+crawler/gCalendar/token.json
+crawler/gCalendar/credential.json
