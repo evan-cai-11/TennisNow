@@ -61,84 +61,59 @@ class FacilitronAgendaAnalyzer:
         print(f"🔗 URL: {self.api_url}")
         print(f"📝 Method: POST (as per JavaScript analysis)")
         
-        # Try different POST data combinations
-        post_data_sets = [
-            # Basic POST with no data
-            {},
-            
-            # With date range (if the API supports it)
-            {'start': start_date, 'end': end_date} if start_date and end_date else {},
-            {'start_date': start_date, 'end_date': end_date} if start_date and end_date else {},
-            
-            # With calendar view parameters
-            {'view': 'month'},
-            {'view': 'agenda'},
-            {'format': 'json'},
-            
-            # With facility filters (empty means all facilities)
-            {'facilities': ''},
-            {'facility_ids': ''},
-            
-            # Combined parameters
-            {'view': 'month', 'facilities': ''} if start_date and end_date else {'view': 'month'},
-        ]
+        # Use the working POST data combination
+        post_data = {'start': start_date, 'end': end_date} if start_date and end_date else {}
         
-        for i, post_data in enumerate(post_data_sets):
-            if not post_data:  # Skip empty data sets after first attempt
-                if i > 0:
-                    continue
+        print(f"\n🔄 Making POST request with data: {post_data}")
+        
+        try:
+            response = requests.post(
+                self.api_url, 
+                data=post_data, 
+                headers=self.headers, 
+                timeout=30
+            )
             
-            print(f"\n🔄 Attempt {i+1}: POST data = {post_data}")
+            print(f"   Status: {response.status_code}")
+            print(f"   Content-Type: {response.headers.get('content-type', 'Unknown')}")
             
-            try:
-                response = requests.post(
-                    self.api_url, 
-                    data=post_data, 
-                    headers=self.headers, 
-                    timeout=30
-                )
-                
-                print(f"   Status: {response.status_code}")
-                print(f"   Content-Type: {response.headers.get('content-type', 'Unknown')}")
-                
-                if response.status_code == 200:
-                    try:
-                        data = response.json()
-                        print(f"   ✅ Success! JSON response received")
-                        print(f"   Response type: {type(data)}")
-                        
-                        if isinstance(data, dict):
-                            print(f"   Keys: {list(data.keys())}")
-                            
-                            # Check for common data structures
-                            if 'events' in data:
-                                print(f"   Events count: {len(data['events'])}")
-                            if 'facilities' in data:
-                                print(f"   Facilities count: {len(data['facilities'])}")
-                            if 'schedules' in data:
-                                print(f"   Schedules count: {len(data['schedules'])}")
-                        
-                        elif isinstance(data, list):
-                            print(f"   List length: {len(data)}")
-                            if len(data) > 0 and isinstance(data[0], dict):
-                                print(f"   First item keys: {list(data[0].keys())}")
-                        
-                        return data
-                        
-                    except json.JSONDecodeError:
-                        print(f"   ❌ Not JSON response")
-                        print(f"   Response text (first 500 chars): {response.text[:500]}")
-                        
-                else:
-                    print(f"   ❌ Error: {response.status_code}")
-                    print(f"   Response: {response.text[:500]}")
+            if response.status_code == 200:
+                try:
+                    data = response.json()
+                    print(f"   ✅ Success! JSON response received")
+                    print(f"   Response type: {type(data)}")
                     
-            except Exception as e:
-                print(f"   ❌ Exception: {e}")
-            
-            time.sleep(0.5)  # Be gentle with the server
-        
-        return {"error": "All POST attempts failed"}
+                    if isinstance(data, dict):
+                        print(f"   Keys: {list(data.keys())}")
+                        
+                        # Check for common data structures
+                        if 'events' in data:
+                            print(f"   Events count: {len(data['events'])}")
+                        if 'facilities' in data:
+                            print(f"   Facilities count: {len(data['facilities'])}")
+                        if 'schedules' in data:
+                            print(f"   Schedules count: {len(data['schedules'])}")
+                    
+                    elif isinstance(data, list):
+                        print(f"   List length: {len(data)}")
+                        if len(data) > 0 and isinstance(data[0], dict):
+                            print(f"   First item keys: {list(data[0].keys())}")
+                    
+                    return data
+                    
+                except json.JSONDecodeError:
+                    print(f"   ❌ Not JSON response")
+                    print(f"   Response text (first 500 chars): {response.text[:500]}")
+                    return {"error": "Invalid JSON response", "text": response.text[:500]}
+                    
+            else:
+                print(f"   ❌ Error: {response.status_code}")
+                print(f"   Response: {response.text[:500]}")
+                return {"error": f"HTTP {response.status_code}", "text": response.text[:500]}
+                
+        except Exception as e:
+            print(f"   ❌ Exception: {e}")
+            return {"error": str(e)}
     
     def parse_agenda_data(self, calendar_data: Dict, start_date: str = None, end_date: str = None) -> Dict:
         """
