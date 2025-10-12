@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-menlo_park_schedule_fetcher.py
+xplor_schedule_fetcher.py
 
 Script to fetch tennis court schedule data from Menlo Park's Xplore Recreation booking system.
 Based on analysis of the JavaScript code in FacilityLandingPageController.js.
@@ -11,9 +11,9 @@ Key findings from JavaScript analysis:
 3. The API requires specific parameters including facilityId, date, daysCount, duration, serviceId, and durationIds
 
 Usage:
-  python menlo_park_schedule_fetcher.py --date 2025-01-15
-  python menlo_park_schedule_fetcher.py --date 2025-01-15 --debug
-  python menlo_park_schedule_fetcher.py --start-date 2025-01-15 --end-date 2025-01-21
+  python xplor_schedule_fetcher.py --date 2025-01-15
+  python xplor_schedule_fetcher.py --date 2025-01-15 --debug
+  python xplor_schedule_fetcher.py --start-date 2025-01-15 --end-date 2025-01-21
 """
 
 import argparse
@@ -22,30 +22,37 @@ import requests
 from datetime import datetime, timedelta
 from typing import Dict, List, Optional
 import time
+import os
 
 class MenloParkScheduleFetcher:
     """Fetch schedule data from Menlo Park's Xplore Recreation booking system."""
     
-    def __init__(self):
-        self.base_url = "https://cityofmenlopark.perfectmind.com"
-        self.api_url = f"{self.base_url}/26116/Clients/BookMe4LandingPages/FacilityAvailability"
-        self.facility_page_url = f"{self.base_url}/26116/Clients/BookMe4LandingPages/Facility"
+    def __init__(self, facility_name: str = None, config_file: str = None):
+        # Load configuration first
+        self.config = self.load_config(config_file)
+        self.facility = self.get_facility(facility_name)
+        self.city = self.get_city_for_facility(facility_name)
         
-        # Facility and service information extracted from the HTML
-        self.facility_id = "aa931648-bf9a-4519-9ade-652246c770ef"
-        self.widget_id = "286f9a84-b14e-434e-acd2-cb2016c8a3cd"
-        self.calendar_id = "cd918767-63df-4159-972b-56a7bea51bd1"
+        # Set URLs from city configuration
+        self.base_url = self.city["base_url"]
+        self.api_url = f"{self.base_url}{self.city['api_path']}"
+        self.facility_page_url = f"{self.base_url}{self.city['facility_page_path']}"
         
-        # Service information from the JavaScript initialization
-        # Found the correct service ID from the HTML services data
-        self.service_id = "819f1be6-6add-4c70-b3fd-b5c71f5e38a3"  # Tennis Court Rentals service ID
-        self.duration = 60  # 60 minutes
-        self.duration_ids = [
-            "a389d9e6-db77-4ea9-a8cd-38ab06957e85",
-            "b695197c-68ec-4979-915b-391ce1772664", 
-            "0af7ff92-69b5-4717-8b52-52bcdfa334ed",
-            "2ee8c03b-0bdc-4677-96d1-56bf6ab863af"
-        ]
+        # Extract facility information from config
+        self.facility_id = self.facility["facility_id"]
+        self.widget_id = self.facility["widget_id"]
+        self.calendar_id = self.facility["calendar_id"]
+        self.service_id = self.facility["service_id"]
+        
+        # Default settings from config
+        self.duration = self.config["default_settings"]["duration"]
+        self.fee_type = self.config["default_settings"]["fee_type"]
+        
+        # Use facility-specific duration IDs if available, otherwise use default
+        if "duration_ids" in self.facility:
+            self.duration_ids = self.facility["duration_ids"]
+        else:
+            self.duration_ids = self.config["default_settings"]["duration_ids"]
         
         # Anti-forgery token (from the HTML, but may need to be refreshed)
         self.anti_forgery_token = "NDwp2noK7Vl6F_YSVnTbYEZAMI5YjRkgURdET0ea7W3zKJcl6dXIL59TUWNgGbfgKSC2NazTuLxhzZ-RtLd1ULCDRIg-XjtGiBrwuCk0NoDbn4pr0"
@@ -68,6 +75,68 @@ class MenloParkScheduleFetcher:
         # Use a session to maintain cookies
         self.session = requests.Session()
         self.session.headers.update(self.headers)
+    
+    def load_config(self, config_file: str = None) -> Dict:
+        """Load configuration from JSON file."""
+        if config_file is None:
+            # Default to facilities_config.json in the same directory
+            script_dir = os.path.dirname(os.path.abspath(__file__))
+            config_file = os.path.join(script_dir, "facilities_config.json")
+        
+        try:
+            with open(config_file, 'r') as f:
+                return json.load(f)
+        except FileNotFoundError:
+            raise FileNotFoundError(f"Configuration file not found: {config_file}")
+        except json.JSONDecodeError as e:
+            raise ValueError(f"Invalid JSON in configuration file: {e}")
+    
+    def get_city_for_facility(self, facility_name: str = None) -> Dict:
+        """Get city information for a given facility."""
+        # Find the city that contains the specified facility
+        for state in self.config["states"]:
+            for city in state["cities"]:
+                for facility in city["facilities"]:
+                    if facility_name is None or facility["name"].lower() == facility_name.lower():
+                        return city
+        
+        # If not found, return the first city
+        if self.config["states"] and self.config["states"][0]["cities"]:
+            return self.config["states"][0]["cities"][0]
+        
+        raise ValueError(f"City not found for facility '{facility_name}'")
+    
+    def get_facility(self, facility_name: str = None) -> Dict:
+        """Get facility information by name."""
+        # Get all facilities from all states and cities
+        all_facilities = []
+        for state in self.config["states"]:
+            for city in state["cities"]:
+                for facility in city["facilities"]:
+                    all_facilities.append(facility)
+        
+        if facility_name is None:
+            # Return the first facility if no name specified
+            return all_facilities[0]
+        
+        # Find facility by name (case-insensitive)
+        for facility in all_facilities:
+            if facility["name"].lower() == facility_name.lower():
+                return facility
+        
+        # If not found, list available facilities
+        available_facilities = [f["name"] for f in all_facilities]
+        raise ValueError(f"Facility '{facility_name}' not found. Available facilities: {available_facilities}")
+    
+    def list_facilities(self) -> List[Dict]:
+        """List all available facilities."""
+        # Get all facilities from all states and cities
+        all_facilities = []
+        for state in self.config["states"]:
+            for city in state["cities"]:
+                for facility in city["facilities"]:
+                    all_facilities.append(facility)
+        return all_facilities
     
     def fetch_anti_forgery_token(self) -> str:
         """
@@ -322,7 +391,8 @@ class MenloParkScheduleFetcher:
     def fetch_schedule(self, start_date: str, days_count: int = 7, debug: bool = False) -> Dict:
         """Main method to fetch and parse schedule data."""
         print(f"🎾 Menlo Park Schedule Fetcher")
-        print(f"📍 Facility: Burgess Park - Tennis Court #1")
+        print(f"📍 Facility: {self.facility['name']}")
+        print(f"📍 Address: {self.facility['address']}")
         print(f"📅 Start Date: {start_date}, Days: {days_count}")
         print("=" * 60)
         
@@ -345,19 +415,43 @@ def main():
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
-  python menlo_park_schedule_fetcher.py --date 2025-01-15
-  python menlo_park_schedule_fetcher.py --date 2025-01-15 --debug
-  python menlo_park_schedule_fetcher.py --start-date 2025-01-15 --days 14
+  python xplor_schedule_fetcher.py --date 2025-01-15
+  python xplor_schedule_fetcher.py --date 2025-01-15 --debug
+  python xplor_schedule_fetcher.py --start-date 2025-01-15 --days 14
+  python xplor_schedule_fetcher.py --list-facilities
+  python xplor_schedule_fetcher.py --facility "Burgess Park - Tennis Court #1" --date 2025-01-15
         """
     )
     
     parser.add_argument("--date", help="Specific date in YYYY-MM-DD format")
     parser.add_argument("--start-date", help="Start date in YYYY-MM-DD format")
     parser.add_argument("--days", type=int, default=7, help="Number of days to fetch (default: 7)")
+    parser.add_argument("--facility", help="Facility name (default: first facility in config)")
+    parser.add_argument("--config", help="Path to configuration file (default: facilities_config.json)")
+    parser.add_argument("--list-facilities", action="store_true", help="List all available facilities")
     parser.add_argument("--debug", action="store_true", help="Enable debug output")
     parser.add_argument("--output", help="Output JSON file path")
     
     args = parser.parse_args()
+    
+    # Handle list facilities command
+    if args.list_facilities:
+        try:
+            fetcher = MenloParkScheduleFetcher(config_file=args.config)
+            facilities = fetcher.list_facilities()
+            print("🏢 Available Facilities:")
+            print("=" * 50)
+            for facility in facilities:
+                print(f"📍 {facility['name']}")
+                print(f"   Address: {facility['address']}")
+                print(f"   Contact: {facility.get('contact', 'N/A')}")
+                print(f"   Hours: {facility.get('hours', 'N/A')}")
+                print(f"   Features: {', '.join(facility.get('features', []))}")
+                print()
+            return 0
+        except Exception as e:
+            print(f"❌ Error listing facilities: {e}")
+            return 1
     
     # Determine start date
     if args.date:
@@ -370,7 +464,11 @@ Examples:
         print(f"ℹ️  No date specified, using today: {start_date}")
     
     # Initialize fetcher
-    fetcher = MenloParkScheduleFetcher()
+    try:
+        fetcher = MenloParkScheduleFetcher(facility_name=args.facility, config_file=args.config)
+    except Exception as e:
+        print(f"❌ Error initializing fetcher: {e}")
+        return 1
     
     # Fetch schedule data
     result = fetcher.fetch_schedule(start_date, args.days, args.debug)
