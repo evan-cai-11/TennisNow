@@ -6,9 +6,114 @@ A comprehensive system for scraping tennis court availability from various booki
 
 This project provides tools to scrape tennis court schedules from different booking systems, including:
 
-- **Xplore Recreation** - Used by many cities for facility booking
-- **Facilitron** - Another common booking platform
+- **WebTrac** - Used by many cities for facility booking (Burlingame, San Mateo, Albany)
+- **Xplore Recreation** - Used by many cities for facility booking (Menlo Park)
+- **Facilitron** - Another common booking platform (Hillsborough)
 - **Google Calendar** - For public calendar subscriptions
+
+## WebTrac Scraper
+
+The WebTrac scraper is designed to fetch tennis court availability from cities using the WebTrac booking system (like Burlingame, San Mateo, and Albany).
+
+### Architecture
+
+The WebTrac scraping system uses Playwright for browser automation to bypass anti-bot protection:
+
+1. **`fetch_schedule.py`** - Main WebTrac scraper with Playwright
+   - **Use when**: You want to scrape WebTrac-based tennis courts
+   - **Supports**: Burlingame, San Mateo, Albany
+   - **Reads from**: `config_webtrac.json`
+
+### Configuration
+
+The `config_webtrac.json` file contains city-specific parameters:
+
+```json
+{
+  "WebTrac": {
+    "Burlingame": {
+      "base_url": "https://caburlingameweb.myvscloud.com",
+      "params": {
+        "display": "Listing",
+        "blockstodisplay": 24,
+        "frclass": "Tennis Court",
+        "type": "",
+        "keywordoption": "Match One"
+      }
+    },
+    "San Mateo": {
+      "base_url": "https://casanmateoweb.myvscloud.com",
+      "params": {
+        "display": "Listing",
+        "blockstodisplay": 24,
+        "type": "Tennis Court",
+        "frclass": "",
+        "keywordoption": "Match One"
+      }
+    },
+    "Albany": {
+      "base_url": "https://caalbanyweb.myvscloud.com",
+      "params": {
+        "display": "Listing",
+        "blockstodisplay": 24,
+        "frclass": "TENNI",
+        "type": "",
+        "keywordoption": "Match One"
+      }
+    }
+  }
+}
+```
+
+### Usage Examples
+
+```bash
+# Scrape Burlingame tennis courts
+python crawler/WebTrac/fetch_schedule.py --date 2025-10-13 --query_mode burlingame
+
+# Scrape San Mateo tennis courts
+python crawler/WebTrac/fetch_schedule.py --date 2025-10-13 --query_mode san_mateo
+
+# Scrape Albany tennis courts
+python crawler/WebTrac/fetch_schedule.py --date 2025-10-13 --query_mode albany
+
+# Scrape all cities
+python crawler/WebTrac/fetch_all_cities.py --date 2025-10-13
+```
+
+### Output Format
+
+The WebTrac scraper generates JSON files with court availability data:
+
+```json
+{
+  "date": "2025-10-13",
+  "city": "Burlingame",
+  "courts": [
+    {
+      "name": "Tennis Court 1",
+      "location": "Burlingame High School",
+      "availability": [
+        {
+          "time": "8:00 am - 9:00 am",
+          "status": "available"
+        },
+        {
+          "time": "9:00 am - 10:00 am", 
+          "status": "unavailable"
+        }
+      ]
+    }
+  ],
+  "updated_at": "2025-01-15T10:30:00.000Z"
+}
+```
+
+### Current Supported Cities
+
+- **Burlingame, CA** - Multiple tennis courts
+- **San Mateo, CA** - Multiple tennis courts  
+- **Albany, CA** - Multiple tennis courts
 
 ## Xplore Recreation Site Scraping
 
@@ -246,6 +351,11 @@ python crawler/gCalendar/google_calendar_integration.py --public-calendar "tenni
 TennisNow/
 ├── README.md                           # This file
 ├── crawler/
+│   ├── WebTrac/                        # WebTrac scrapers
+│   │   ├── fetch_schedule.py               # Main WebTrac scraper with Playwright
+│   │   ├── fetch_all_cities.py             # Scrape all WebTrac cities
+│   │   ├── parse_webtrac_listing.py        # HTML parsing utilities
+│   │   └── config_webtrac.json             # Configuration file
 │   ├── Xplor/                          # Xplore Recreation scrapers
 │   │   ├── facility_schedule_fetcher.py    # Standalone facility scraper
 │   │   ├── config_schedule_scraper.py      # Multi-level config scraper
@@ -255,8 +365,6 @@ TennisNow/
 │   ├── gCalendar/                      # Google Calendar scrapers
 │   │   ├── google_calendar_integration.py
 │   │   └── setup_google_calendar.py
-│   └── WebTrac/                        # WebTrac scrapers
-│       └── fetch_schedule.py
 └── server/
     └── app.py                          # Web server
 ```
